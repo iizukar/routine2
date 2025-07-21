@@ -1,0 +1,22 @@
+name: 55
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  visit-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Puppeteer
+        run: npm install puppeteer
+      - name: Visit site with Puppeteer
+        run: |
+          node visit-site.js
